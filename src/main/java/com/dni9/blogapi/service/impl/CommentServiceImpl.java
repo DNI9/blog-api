@@ -1,5 +1,8 @@
 package com.dni9.blogapi.service.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 import com.dni9.blogapi.entity.Comment;
@@ -30,6 +33,12 @@ public class CommentServiceImpl implements CommentService {
     comment.setPost(post);
     Comment newComment = commentRepository.save(comment);
     return mapToDto(newComment);
+  }
+
+  @Override
+  public List<CommentDto> getCommentsByPostId(long postId) {
+    List<Comment> comments = commentRepository.findByPostId(postId);
+    return comments.stream().map(this::mapToDto).collect(Collectors.toList());
   }
 
   private Comment mapToEntity(CommentDto data) {

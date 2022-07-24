@@ -1,7 +1,10 @@
 package com.dni9.blogapi.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +29,11 @@ public class CommentController {
       @PathVariable(name = "postId") long postId,
       @RequestBody CommentDto body) {
     return new ResponseEntity<>(commentService.createComment(postId, body), HttpStatus.CREATED);
+  }
+
+  @GetMapping("/posts/{postId}/comments")
+  public ResponseEntity<List<CommentDto>> getCommentsByPostId(@PathVariable(name = "postId") long postId) {
+    return ResponseEntity.ok(commentService.getCommentsByPostId(postId));
   }
 
 }
