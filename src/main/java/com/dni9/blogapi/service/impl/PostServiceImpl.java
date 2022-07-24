@@ -1,5 +1,8 @@
 package com.dni9.blogapi.service.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 import com.dni9.blogapi.entity.Post;
@@ -21,6 +24,12 @@ public class PostServiceImpl implements PostService {
     Post post = mapToEntity(data);
     Post newPost = postRepository.save(post);
     return mapToDto(newPost);
+  }
+
+  @Override
+  public List<PostDto> getAllPosts() {
+    List<Post> posts = postRepository.findAll();
+    return posts.stream().map(this::mapToDto).collect(Collectors.toList());
   }
 
   private PostDto mapToDto(Post post) {

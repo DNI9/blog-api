@@ -1,7 +1,10 @@
 package com.dni9.blogapi.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,5 +25,10 @@ public class PostController {
   @PostMapping
   public ResponseEntity<PostDto> createPost(@RequestBody PostDto body) {
     return new ResponseEntity<>(postService.createPost(body), HttpStatus.CREATED);
+  }
+
+  @GetMapping
+  public ResponseEntity<List<PostDto>> getAllPosts() {
+    return new ResponseEntity<>(postService.getAllPosts(), HttpStatus.OK);
   }
 }
