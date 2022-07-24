@@ -1,5 +1,6 @@
 package com.dni9.blogapi.controller;
 
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,8 +34,10 @@ public class PostController {
   @GetMapping
   public ResponseEntity<PostResponse> getAllPosts(
       @RequestParam(name = "pageNo", defaultValue = "0", required = false) int pageNo,
-      @RequestParam(name = "pageSize", defaultValue = "10", required = false) int pageSize) {
-    return ResponseEntity.ok(postService.getAllPosts(pageNo, pageSize));
+      @RequestParam(name = "pageSize", defaultValue = "10", required = false) int pageSize,
+      @RequestParam(name = "sortBy", defaultValue = "id", required = false) String sortBy,
+      @RequestParam(name = "sortDir", defaultValue = "ASC", required = false) Direction sortDir) {
+    return ResponseEntity.ok(postService.getAllPosts(pageNo, pageSize, sortBy, sortDir));
   }
 
   @GetMapping("/{id}")

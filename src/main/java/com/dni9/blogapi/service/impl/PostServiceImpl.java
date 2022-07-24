@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.dni9.blogapi.entity.Post;
@@ -31,8 +33,8 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
-  public PostResponse getAllPosts(int pageNo, int pageSize) {
-    PageRequest pageable = PageRequest.of(pageNo, pageSize);
+  public PostResponse getAllPosts(int pageNo, int pageSize, String sortBy, Direction sortDir) {
+    PageRequest pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortDir, sortBy));
     Page<Post> posts = postRepository.findAll(pageable);
 
     List<PostDto> listOfPosts = posts.getContent()
