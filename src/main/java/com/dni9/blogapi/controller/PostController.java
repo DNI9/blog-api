@@ -1,7 +1,5 @@
 package com.dni9.blogapi.controller;
 
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,9 +9,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dni9.blogapi.payload.PostDto;
+import com.dni9.blogapi.payload.PostResponse;
 import com.dni9.blogapi.service.PostService;
 
 @RestController
@@ -31,8 +31,10 @@ public class PostController {
   }
 
   @GetMapping
-  public ResponseEntity<List<PostDto>> getAllPosts() {
-    return ResponseEntity.ok(postService.getAllPosts());
+  public ResponseEntity<PostResponse> getAllPosts(
+      @RequestParam(name = "pageNo", defaultValue = "0", required = false) int pageNo,
+      @RequestParam(name = "pageSize", defaultValue = "10", required = false) int pageSize) {
+    return ResponseEntity.ok(postService.getAllPosts(pageNo, pageSize));
   }
 
   @GetMapping("/{id}")

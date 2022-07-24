@@ -3,11 +3,14 @@ package com.dni9.blogapi.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.dni9.blogapi.entity.Post;
 import com.dni9.blogapi.exception.ResourceNotFoundException;
 import com.dni9.blogapi.payload.PostDto;
+import com.dni9.blogapi.payload.PostResponse;
 import com.dni9.blogapi.repository.PostRepository;
 import com.dni9.blogapi.service.PostService;
 
@@ -28,9 +31,21 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
-  public List<PostDto> getAllPosts() {
-    List<Post> posts = postRepository.findAll();
-    return posts.stream().map(this::mapToDto).collect(Collectors.toList());
+  public PostResponse getAllPosts(int pageNo, int pageSize) {
+    PageRequest pageable = PageRequest.of(pageNo, pageSize);
+    Page<Post> posts = postRepository.findAll(pageable);
+
+    List<PostDto> listOfPosts = posts.getContent()
+        .stream().map(this::mapToDto).collect(Collectors.toList());
+
+    return PostResponse.builder()
+        .content(listOfPosts)
+        .pageNo(posts.getNumber())
+        .pageSize(posts.getSize())
+        .totalElements(posts.getTotalElements())
+        .totalPages(posts.getTotalPages())
+        .last(posts.isLast())
+        .build();
   }
 
   @Override

@@ -1,13 +1,12 @@
 package com.dni9.blogapi.service;
 
-import java.util.List;
-
 import com.dni9.blogapi.payload.PostDto;
+import com.dni9.blogapi.payload.PostResponse;
 
 public interface PostService {
   PostDto createPost(PostDto post);
 
-  List<PostDto> getAllPosts();
+  PostResponse getAllPosts(int pageNo, int pageSize);
 
   PostDto getPostById(long id);
 
