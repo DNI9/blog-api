@@ -1,0 +1,31 @@
+package com.dni9.blogapi.controller;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.dni9.blogapi.payload.CommentDto;
+import com.dni9.blogapi.service.CommentService;
+
+@RestController
+@RequestMapping("/api/")
+public class CommentController {
+
+  private final CommentService commentService;
+
+  public CommentController(CommentService commentService) {
+    this.commentService = commentService;
+  }
+
+  @PostMapping("/posts/{postId}/comments")
+  public ResponseEntity<CommentDto> createComment(
+      @PathVariable(name = "postId") long postId,
+      @RequestBody CommentDto body) {
+    return new ResponseEntity<>(commentService.createComment(postId, body), HttpStatus.CREATED);
+  }
+
+}
