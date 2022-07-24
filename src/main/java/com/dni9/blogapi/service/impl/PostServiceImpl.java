@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.dni9.blogapi.entity.Post;
+import com.dni9.blogapi.exception.ResourceNotFoundException;
 import com.dni9.blogapi.payload.PostDto;
 import com.dni9.blogapi.repository.PostRepository;
 import com.dni9.blogapi.service.PostService;
@@ -30,6 +31,14 @@ public class PostServiceImpl implements PostService {
   public List<PostDto> getAllPosts() {
     List<Post> posts = postRepository.findAll();
     return posts.stream().map(this::mapToDto).collect(Collectors.toList());
+  }
+
+  @Override
+  public PostDto getPostById(long id) {
+    Post post = postRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));
+
+    return mapToDto(post);
   }
 
   private PostDto mapToDto(Post post) {
