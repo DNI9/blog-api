@@ -6,26 +6,31 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Entity
-@Table(name = "posts")
+@Table(name = "posts", uniqueConstraints = { @UniqueConstraint(columnNames = { "title" }) })
 public class Post {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(nullable = false, unique = true)
+  @Column(name = "title", nullable = false)
   private String title;
 
+  @Column(name = "description", nullable = false)
   private String description;
 
-  @Column(nullable = false)
+  @Column(name = "content", nullable = false)
   private String content;
 }
