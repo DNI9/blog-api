@@ -30,7 +30,7 @@ public class PostController {
 
   @GetMapping
   public ResponseEntity<List<PostDto>> getAllPosts() {
-    return new ResponseEntity<>(postService.getAllPosts(), HttpStatus.OK);
+    return ResponseEntity.ok(postService.getAllPosts());
   }
 
   @GetMapping("/{id}")
