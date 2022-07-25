@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,6 +42,14 @@ public class CommentController {
       @PathVariable(name = "postId") long postId,
       @PathVariable(name = "id") long id) {
     return ResponseEntity.ok(commentService.getCommentById(postId, id));
+  }
+
+  @PutMapping("/posts/{postId}/comments/{id}")
+  public ResponseEntity<CommentDto> updateComment(
+      @PathVariable(name = "postId") long postId,
+      @PathVariable(name = "id") long id,
+      @RequestBody CommentDto comment) {
+    return ResponseEntity.ok(commentService.updateComment(postId, id, comment));
   }
 
 }
