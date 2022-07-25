@@ -3,6 +3,7 @@ package com.dni9.blogapi.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -20,9 +21,11 @@ import com.dni9.blogapi.service.PostService;
 public class PostServiceImpl implements PostService {
 
   private final PostRepository postRepository;
+  private final ModelMapper mapper;
 
-  public PostServiceImpl(PostRepository postRepository) {
+  public PostServiceImpl(PostRepository postRepository, ModelMapper mapper) {
     this.postRepository = postRepository;
+    this.mapper = mapper;
   }
 
   @Override
@@ -80,20 +83,10 @@ public class PostServiceImpl implements PostService {
   }
 
   private PostDto mapToDto(Post post) {
-    return PostDto.builder()
-        .id(post.getId())
-        .title(post.getTitle())
-        .content(post.getContent())
-        .description(post.getDescription())
-        .build();
+    return mapper.map(post, PostDto.class);
   }
 
   private Post mapToEntity(PostDto data) {
-    Post post = new Post();
-    post.setTitle(data.getTitle());
-    post.setDescription(data.getDescription());
-    post.setContent(data.getContent());
-
-    return post;
+    return mapper.map(data, Post.class);
   }
 }
