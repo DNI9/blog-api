@@ -3,6 +3,7 @@ package com.dni9.blogapi.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +21,15 @@ public class CommentServiceImpl implements CommentService {
 
   private final CommentRepository commentRepository;
   private final PostRepository postRepository;
+  private final ModelMapper mapper;
 
-  public CommentServiceImpl(CommentRepository commentRepository, PostRepository postRepository) {
+  public CommentServiceImpl(
+      CommentRepository commentRepository,
+      PostRepository postRepository,
+      ModelMapper modelMapper) {
     this.commentRepository = commentRepository;
     this.postRepository = postRepository;
+    this.mapper = modelMapper;
   }
 
   @Override
@@ -93,22 +99,11 @@ public class CommentServiceImpl implements CommentService {
     commentRepository.delete(comment);
   }
 
-  private Comment mapToEntity(CommentDto data) {
-    Comment comment = new Comment();
-
-    comment.setName(data.getName());
-    comment.setEmail(data.getEmail());
-    comment.setBody(data.getBody());
-
-    return comment;
+  private CommentDto mapToDto(Comment comment) {
+    return mapper.map(comment, CommentDto.class);
   }
 
-  private CommentDto mapToDto(Comment comment) {
-    return CommentDto.builder()
-        .id(comment.getId())
-        .name(comment.getName())
-        .email(comment.getEmail())
-        .body(comment.getBody())
-        .build();
+  private Comment mapToEntity(CommentDto data) {
+    return mapper.map(data, Comment.class);
   }
 }
