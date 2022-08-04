@@ -1,5 +1,7 @@
 package com.dni9.blogapi.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +30,7 @@ public class PostController {
   }
 
   @PostMapping
-  public ResponseEntity<PostDto> createPost(@RequestBody PostDto body) {
+  public ResponseEntity<PostDto> createPost(@Valid @RequestBody PostDto body) {
     return new ResponseEntity<>(postService.createPost(body), HttpStatus.CREATED);
   }
 
@@ -47,7 +49,7 @@ public class PostController {
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<PostDto> updatePost(@RequestBody PostDto body, @PathVariable(name = "id") long id) {
+  public ResponseEntity<PostDto> updatePost(@Valid @RequestBody PostDto body, @PathVariable(name = "id") long id) {
     return ResponseEntity.ok(postService.updatePost(body, id));
   }
 
