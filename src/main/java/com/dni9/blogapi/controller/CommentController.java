@@ -2,6 +2,8 @@ package com.dni9.blogapi.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,7 +31,7 @@ public class CommentController {
   @PostMapping("/posts/{postId}/comments")
   public ResponseEntity<CommentDto> createComment(
       @PathVariable(name = "postId") long postId,
-      @RequestBody CommentDto body) {
+      @Valid @RequestBody CommentDto body) {
     return new ResponseEntity<>(commentService.createComment(postId, body), HttpStatus.CREATED);
   }
 
@@ -49,7 +51,7 @@ public class CommentController {
   public ResponseEntity<CommentDto> updateComment(
       @PathVariable(name = "postId") long postId,
       @PathVariable(name = "id") long id,
-      @RequestBody CommentDto comment) {
+      @Valid @RequestBody CommentDto comment) {
     return ResponseEntity.ok(commentService.updateComment(postId, id, comment));
   }
 
