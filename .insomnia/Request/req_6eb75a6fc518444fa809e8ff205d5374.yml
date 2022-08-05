@@ -1,0 +1,21 @@
+_id: req_6eb75a6fc518444fa809e8ff205d5374
+type: Request
+parentId: fld_b1e92228ea7948c9bf8eeaf9052d3c20
+modified: 1659694587017
+created: 1658749157188
+url: "{{BASE_URL}}/api/posts/7/comments/7"
+name: Get comment by Id
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1658620921113.25
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

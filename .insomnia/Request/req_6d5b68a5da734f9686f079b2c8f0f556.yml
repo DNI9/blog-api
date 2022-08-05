@@ -1,0 +1,41 @@
+_id: req_6d5b68a5da734f9686f079b2c8f0f556
+type: Request
+parentId: fld_e07dc5dbd5bb41ad97af200acd889e50
+modified: 1659715716807
+created: 1658668052025
+url: "{{BASE_URL}}/api/posts"
+name: Get all Post
+description: ""
+method: GET
+body: {}
+parameters:
+  - id: pair_05ed321e3773450fbd8f748048340a2c
+    name: pageNo
+    value: "0"
+    description: ""
+    disabled: true
+  - id: pair_2a122801030648099a7ad246c81f4d24
+    name: pageSize
+    value: "2"
+    description: ""
+    disabled: true
+  - id: pair_0db88fccc0464c4fa2c38b18799a73b6
+    name: sortBy
+    value: title
+    description: ""
+    disabled: true
+  - id: pair_328c8d163319404cae9c42553c048108
+    name: sortDir
+    value: DESC
+    description: ""
+    disabled: true
+headers: []
+authentication: {}
+metaSortKey: -1658599492529
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

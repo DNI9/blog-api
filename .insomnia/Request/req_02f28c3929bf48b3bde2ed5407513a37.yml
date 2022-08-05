@@ -1,0 +1,31 @@
+_id: req_02f28c3929bf48b3bde2ed5407513a37
+type: Request
+parentId: fld_b1e92228ea7948c9bf8eeaf9052d3c20
+modified: 1659694713192
+created: 1658750323486
+url: "{{BASE_URL}}/api/posts/7/comments/7"
+name: Update Comment
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"name": "DNI9",
+    	"email": "dni9@abc.cm",
+    	"body": "Comment 7 updated"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_f89fba39aca94cf088de78b283e46a6e
+authentication: {}
+metaSortKey: -1658610206846.125
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

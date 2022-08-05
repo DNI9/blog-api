@@ -1,0 +1,36 @@
+_id: req_52562fb8efbe41388d6cc24c77293a2d
+type: Request
+parentId: fld_e07dc5dbd5bb41ad97af200acd889e50
+modified: 1659716498868
+created: 1658599492479
+url: "{{BASE_URL}}/api/posts"
+name: Create Post
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: >-
+    {
+    	"title": "saxi post",
+    	"description": "another saxi post huhahahaha",
+    	"content": "another saxi post huhahahaha another saxi post huhahahaha another saxi post huhahahaha"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_475bac569d6b4035a13d59a7bfeb4cff
+authentication:
+  type: basic
+  useISO88591: false
+  disabled: false
+  username: john
+  password: john
+metaSortKey: -1658599492579
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

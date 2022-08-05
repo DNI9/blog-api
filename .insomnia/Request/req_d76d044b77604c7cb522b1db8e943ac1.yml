@@ -1,0 +1,31 @@
+_id: req_d76d044b77604c7cb522b1db8e943ac1
+type: Request
+parentId: fld_b1e92228ea7948c9bf8eeaf9052d3c20
+modified: 1659716440481
+created: 1658685237144
+url: "{{BASE_URL}}/api/posts/7/comments"
+name: Create comment
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"name": "DNI9",
+    	"email": "dni9@abc.cm",
+    	"body": "Comment for post 7"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_475bac569d6b4035a13d59a7bfeb4cff
+authentication: {}
+metaSortKey: -1658685206716
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

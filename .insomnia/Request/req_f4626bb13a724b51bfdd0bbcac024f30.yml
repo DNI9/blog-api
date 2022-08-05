@@ -1,0 +1,21 @@
+_id: req_f4626bb13a724b51bfdd0bbcac024f30
+type: Request
+parentId: fld_e07dc5dbd5bb41ad97af200acd889e50
+modified: 1659625705125
+created: 1658669112849
+url: "{{BASE_URL}}/api/posts/1"
+name: Get Post By Id
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1658599492504
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

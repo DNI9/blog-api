@@ -1,0 +1,26 @@
+_id: req_44f772a74cac4769a6c5fe975686eb35
+type: Request
+parentId: fld_e07dc5dbd5bb41ad97af200acd889e50
+modified: 1659716858166
+created: 1658671030763
+url: "{{BASE_URL}}/api/posts/7"
+name: Delete Post
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: basic
+  useISO88591: false
+  disabled: false
+  username: admin
+  password: admin
+metaSortKey: -1658599492441.5
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

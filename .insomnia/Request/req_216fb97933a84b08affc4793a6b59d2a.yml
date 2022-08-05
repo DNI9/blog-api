@@ -1,0 +1,21 @@
+_id: req_216fb97933a84b08affc4793a6b59d2a
+type: Request
+parentId: fld_b1e92228ea7948c9bf8eeaf9052d3c20
+modified: 1658750796745
+created: 1658750764768
+url: "{{BASE_URL}}/api/posts/1/comments/2"
+name: Delete Comment
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1658604849712.5625
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

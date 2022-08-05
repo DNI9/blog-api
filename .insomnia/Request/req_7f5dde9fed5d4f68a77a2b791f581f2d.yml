@@ -1,0 +1,31 @@
+_id: req_7f5dde9fed5d4f68a77a2b791f581f2d
+type: Request
+parentId: fld_e07dc5dbd5bb41ad97af200acd889e50
+modified: 1659716439087
+created: 1658670057371
+url: "{{BASE_URL}}/api/posts/7"
+name: Update Post
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"title": "title 1 updated",
+    	"description": "",
+    	"content": "content 1 updated"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_475bac569d6b4035a13d59a7bfeb4cff
+authentication: {}
+metaSortKey: -1658599492454
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
