@@ -5,6 +5,7 @@ public class AppConstants {
   public static final String DEFAULT_PAGE_SIZE = "10";
   public static final String DEFAULT_SORT_BY = "id";
   public static final String DEFAULT_SORT_DIRECTION = "ASC";
+  public static final String HAS_ROLE_ADMIN = "hasRole('ADMIN')";
 
   private AppConstants() {
   }
