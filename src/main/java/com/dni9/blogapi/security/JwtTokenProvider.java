@@ -1,40 +1,40 @@
 package com.dni9.blogapi.security;
 
 import com.dni9.blogapi.exception.BlogApiException;
+import com.dni9.blogapi.utils.AppConstants;
 import io.jsonwebtoken.*;
-import org.springframework.beans.factory.annotation.Value;
+import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.SignatureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
+import java.security.Key;
 import java.util.Date;
 
 @Component
 public class JwtTokenProvider {
 
-  @Value("${app.jwt-secret}")
-  private String jwtSecret;
-
-  @Value("${app.jwt-expiration-milliseconds}")
-  private int jwtExpirationMillis;
-
+  private final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
   public String generateToken(Authentication authentication) {
     String username = authentication.getName();
+
     Date currentDate = new Date();
-    Date expiryDate = new Date(currentDate.getTime() + jwtExpirationMillis);
+    Date expiryDate = new Date(currentDate.getTime() + AppConstants.JWT_EXPIRY_DATE);
 
     return Jwts.builder()
         .setSubject(username)
         .setIssuedAt(currentDate)
         .setExpiration(expiryDate)
-        .signWith(SignatureAlgorithm.HS512, jwtSecret)
+        .signWith(key)
         .compact();
   }
 
   public String getUsernameFromToken(String token) {
-    return Jwts.parser()
-        .setSigningKey(jwtSecret)
+    return Jwts.parserBuilder()
+        .setSigningKey(key)
+        .build()
         .parseClaimsJws(token)
         .getBody()
         .getSubject();
@@ -42,7 +42,7 @@ public class JwtTokenProvider {
 
   public boolean validateToken(String token) {
     try {
-      Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
+      Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
       return true;
     } catch (SignatureException exception) {
       throw new BlogApiException(HttpStatus.BAD_REQUEST, "Invalid JWT Signature");

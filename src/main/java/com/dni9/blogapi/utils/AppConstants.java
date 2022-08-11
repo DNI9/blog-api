@@ -7,6 +7,8 @@ public class AppConstants {
   public static final String DEFAULT_SORT_DIRECTION = "ASC";
   public static final String HAS_ROLE_ADMIN = "hasRole('ADMIN')";
 
+  public static final int JWT_EXPIRY_DATE = 604800000; // 7 Days
+
   private AppConstants() {
   }
 }
