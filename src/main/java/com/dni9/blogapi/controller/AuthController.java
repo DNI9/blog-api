@@ -2,10 +2,12 @@ package com.dni9.blogapi.controller;
 
 import com.dni9.blogapi.entity.Role;
 import com.dni9.blogapi.entity.User;
+import com.dni9.blogapi.payload.JwtAuthResponse;
 import com.dni9.blogapi.payload.LoginDto;
 import com.dni9.blogapi.payload.SignupDto;
 import com.dni9.blogapi.repository.RoleRepository;
 import com.dni9.blogapi.repository.UserRepository;
+import com.dni9.blogapi.security.JwtTokenProvider;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,26 +32,31 @@ public class AuthController {
   private final RoleRepository roleRepository;
   private final PasswordEncoder passwordEncoder;
 
+  private final JwtTokenProvider tokenProvider;
+
   public AuthController(
       AuthenticationManager authenticationManager,
       UserRepository userRepository,
       RoleRepository roleRepository,
-      PasswordEncoder passwordEncoder) {
+      PasswordEncoder passwordEncoder,
+      JwtTokenProvider tokenProvider) {
     this.authenticationManager = authenticationManager;
     this.userRepository = userRepository;
     this.roleRepository = roleRepository;
     this.passwordEncoder = passwordEncoder;
+    this.tokenProvider = tokenProvider;
   }
 
   @PostMapping("/signin")
-  public ResponseEntity<String> authenticateUser(@Valid @RequestBody LoginDto data) {
-    System.out.println(data);
+  public ResponseEntity<JwtAuthResponse> authenticateUser(@Valid @RequestBody LoginDto data) {
     Authentication authentication = authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(data.getUsernameOrEmail(), data.getPassword()));
 
     SecurityContextHolder.getContext().setAuthentication(authentication);
 
-    return new ResponseEntity<>("User signed-in successfully   ", HttpStatus.OK);
+    String token = tokenProvider.generateToken(authentication);
+
+    return ResponseEntity.ok(new JwtAuthResponse(token));
   }
 
   @PostMapping("/signup")
