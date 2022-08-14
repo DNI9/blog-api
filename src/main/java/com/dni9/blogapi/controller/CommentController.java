@@ -2,6 +2,7 @@ package com.dni9.blogapi.controller;
 
 import com.dni9.blogapi.payload.CommentDto;
 import com.dni9.blogapi.service.CommentService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
+@Tag(name = "Comments")
 public class CommentController {
 
   private final CommentService commentService;
